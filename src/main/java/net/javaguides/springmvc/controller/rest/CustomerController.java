@@ -43,6 +43,16 @@ public class CustomerController {
         return customerService.getCustomer(id);
     }
 
+    //Update
+    @PutMapping("/customers/{id}")
+    public void update(@RequestBody Customer theCustomer, @PathVariable Integer id) throws ResourceNotFoundException {
+        Customer customerToUpdate = customerService.getCustomer(id);
+        customerToUpdate.setFirstName(theCustomer.getFirstName());
+        customerToUpdate.setLastName(theCustomer.getLastName());
+        customerToUpdate.setEmail(theCustomer.getEmail());
+        customerService.saveCustomer(customerToUpdate);
+    }
+
     // Delete
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/customers/{id}")
