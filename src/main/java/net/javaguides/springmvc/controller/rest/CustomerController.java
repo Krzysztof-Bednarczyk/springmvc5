@@ -43,4 +43,11 @@ public class CustomerController {
         return customerService.getCustomer(id);
     }
 
+    // Delete
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/customers/{id}")
+    public void delete(@PathVariable Integer id) throws ResourceNotFoundException {
+        customerService.deleteCustomer(id);
+    }
+
 }
